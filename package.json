@@ -1,0 +1,20 @@
+{
+  "name": "kerberos",
+  "version": "0.0.1",
+  "description": "A Discord bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "Doğukan Köse",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.0",
+    "pouchdb": "^7.0.0",
+    "pouchdb-adapter-leveldb": "^7.0.0"
+  }
+}
