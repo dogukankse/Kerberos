@@ -19,10 +19,7 @@ client.on("guildMemberRemove", () => {});
 
 client.on("message", msg => {
   if (
-    msg.content.startsWith("!k ") &&
-    !msg.author.bot &&
-    msg.channel.type != "dm"
-  ) {
+    msg.content.startsWith("!k ") && !msg.author.bot && msg.channel.type != "dm") {
     logToChannel(msg);
     let messageArr = msg.content.split(" ");
     messageArr = messageArr.slice(1);
@@ -67,11 +64,11 @@ client.on("message", msg => {
       let mute_role;
       db.get(msg.guild.id)
         .then(doc => {
-          doc.muteRole == null
-            ? msg.channel.send("There is no mute role. Use setmuterole.")
-            : (mute_role = doc.muteRole);
+          doc.muteRole == null ?
+            msg.channel.send("There is no mute role. Use setmuterole.") :
+            (mute_role = doc.muteRole);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.error(err);
         });
       let member = msg.mentions.members.first();
@@ -179,16 +176,16 @@ function setMuteRole(msg, role) {
   let mute_role = msg.guild.roles.find(r => r.name === role);
   if (mute_role == null)
     msg.guild
-      .createRole({
-        name: "Muted",
-        color: "RED"
-      })
-      .then(r =>
-        msg.channel.send(
-          `Created new role with name ${r.name} and color ${r.color}`
-        )
+    .createRole({
+      name: "Muted",
+      color: "RED"
+    })
+    .then(r =>
+      msg.channel.send(
+        `Created new role with name ${r.name} and color ${r.color}`
       )
-      .catch(console.error);
+    )
+    .catch(console.error);
   db.get(msg.guild.id)
     .then(doc => {
       let new_doc = {
